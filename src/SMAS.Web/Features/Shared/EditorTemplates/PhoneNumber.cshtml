@@ -1,0 +1,27 @@
+@using SMAS.Web.Features.Shared
+@model SMAS.Web.Features.Shared.PhoneNumberViewModel
+
+<form-group>
+    <label asp-for="PhoneCountryCode"></label>
+    <select asp-for="PhoneCountryCode" asp-items="@Model.CountriesOptions" class="form-control"></select>
+    <span asp-validation-for="PhoneCountryCode"></span>
+</form-group>
+<form-group>
+    <label asp-for="PhoneLocalNumber"></label>
+    <div class="input-group">
+        <div id="input-group-addon-country-code" class="input-group-addon">+965</div>
+        <input asp-for="PhoneLocalNumber" class="form-control">
+    </div>
+    <span asp-validation-for="PhoneLocalNumber"></span>
+</form-group>
+
+<script>
+
+    var countryList = document.getElementById("@Html.IdFor(i => i.PhoneCountryCode)");
+    countryList.addEventListener("change", function () {
+        var value = countryList.value;
+        var addon = document.getElementById("input-group-addon-country-code");
+        addon.innerHTML = value;
+    });
+
+</script>

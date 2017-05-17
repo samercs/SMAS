@@ -1,0 +1,71 @@
+@using OrangeJetpack.Core.Formatting
+@model SMAS.Web.Features.Admin.Users.Models.EditUserViewModel
+@{
+    PageSettings.Title = $"Edit User - {NameFormatter.GetFullName(Model.User.FirstName, Model.User.LastName)}";
+}
+
+<h2>User Details</h2>
+
+    <form-section>  
+        <form-group>
+            <label>User ID</label>
+            <p class="form-control-static">
+                @Model.User.Id
+            </p>
+        </form-group>
+        <form-group>
+            <label>Name</label>
+            <p class="form-control-static">
+                @NameFormatter.GetFullName(Model.User.FirstName, Model.User.LastName)
+            </p>
+        </form-group>
+        <form-group>
+            <label>Created</label>
+            <p class="form-control-static">
+                @Model.User.CreatedUtc.Humanize()
+                <small>(<time datetime="@Model.User.CreatedUtc.ToString("s")">@DateTimeFormatter.ToLocalTime(Model.User.CreatedUtc, DateTimeFormatter.Format.Full)</time>)</small>
+            </p>
+        </form-group>
+    </form-section>
+
+<h2>Edit User</h2>
+
+    <form asp-controller="UserManagement" asp-action="Edit" method="post">
+        <form-section>
+            <form-group>
+                <label asp-for="User.FirstName">First Name</label>
+                <input asp-for="User.FirstName" class="form-control" />
+                <span asp-validation-for="User.FirstName"></span>
+            </form-group>
+            <form-group>
+                <label asp-for="User.LastName">Last Name</label>
+                <input asp-for="User.LastName" class="form-control" />
+                <span asp-validation-for="User.LastName"></span>
+            </form-group>
+            <form-group>
+                <label asp-for="User.Email"></label>
+                <input asp-for="User.Email" class="form-control" />
+                <span asp-validation-for="User.Email"></span>
+                <div class="bs-callout bs-callout-warning">
+                    <h4>Warning</h4>
+                    <small>Changing a user's username or email address may disrupt his or her ability to sign into the site, please be very careful when changing.</small>
+                </div>
+            </form-group>
+            <form-group>
+                <label>Roles</label>
+                @foreach (var role in Model.RoleList)
+                {
+                    <div class="checkbox checkbox-primary">
+                        <input id="@role.GetHashCode()" name="@Html.NameFor(m => m.UserRoles)" type="checkbox" value="@role.Value" checked="@role.Selected" />
+                        <label for="@role.GetHashCode()">
+                            @role.Text
+                        </label>
+                    </div>
+                }
+            </form-group>
+            <form-buttons>
+                <button type="submit" class="btn btn-default">Save</button>
+            </form-buttons>
+        </form-section>
+    </form>
+

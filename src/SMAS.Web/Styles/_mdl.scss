@@ -1,0 +1,312 @@
+﻿@import "_variables.scss";
+
+.mdl-card {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-height: 200px;
+    overflow: hidden;
+    width: 330px;
+    z-index: 1;
+    position: relative;
+    margin-bottom: 32px;
+    background: #fff;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+.mdl-shadow--6dp {
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12), 0 3px 5px -1px rgba(0,0,0,.2);
+}
+
+.mdl-card--expand {
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+
+.mdl-card.mdl-card--expand .mdl-card__supporting-text {
+    width: auto;
+}
+
+.mdl-card__supporting-text {
+    color: rgba(0,0,0,.54);
+    overflow: hidden;
+    padding: 16px;
+    width: 90%;
+}
+
+.mdl-card__actions.mdl-card--border {
+    margin: 16px -16px 0 -16px;
+    padding: 16px 16px 0 16px;
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+
+// file uploader
+.mdl-button--file {
+    input {
+        cursor: pointer;
+        height: 100%;
+        right: 0;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        width: 300px;
+        z-index: 4;
+    }
+}
+
+.mdl-textfield--file {
+    .form-control {
+        box-sizing: border-box;
+        width: calc(100% - 32px);
+    }
+
+    .mdl-button--file {
+        right: 0;
+    }
+}
+
+
+// se;ect
+//colors
+$black_12: rgba(0, 0, 0, 0.12);
+$color_alizarin_crimson_approx: rgb(222, 50, 38);
+$black_26: rgba(0, 0, 0, 0.26);
+$color_cerulean_blue_approx: rgb(63, 81, 181);
+
+//@extend-elements
+//original selectors
+//.mdl-select--floating-label.is-focused .mdl-select__label, .mdl-select--floating-label.is-dirty .mdl-select__label
+%extend_1 {
+    color: $color_cerulean_blue_approx;
+    font-size: 12px;
+    top: 4px;
+    visibility: visible;
+}
+
+
+.mdl-select {
+    position: relative;
+    font-size: 16px;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 20px 0;
+
+    &.is-focused {
+        .mdl-select__input {
+            outline: none;
+        }
+
+        .mdl-select__expandable-holder {
+            max-width: 600px;
+        }
+
+        .mdl-select__label:after {
+            left: 0;
+            visibility: visible;
+            width: 100%;
+        }
+    }
+
+    &.is-invalid {
+        .mdl-select__input {
+            border-color: $color_alizarin_crimson_approx;
+            box-shadow: none;
+        }
+
+        .mdl-select__error {
+            visibility: visible;
+        }
+
+        .mdl-select__label:after {
+            background-color: $color_alizarin_crimson_approx;
+        }
+    }
+
+    &.is-dirty {
+        .mdl-select__label {
+            visibility: hidden;
+        }
+
+        .mdl-select__expandable-holder {
+            max-width: 600px;
+        }
+    }
+
+    &.is-disabled .mdl-select__input {
+        background-color: transparent;
+        border-bottom: 1px dotted $black_12;
+    }
+}
+
+.mdl-select__input {
+    border: none;
+    border-bottom: 1px solid $black_12;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0;
+    padding: 4px 0;
+    width: 100%;
+    background: 16px;
+    text-align: left;
+    color: inherit;
+}
+
+.mdl-select__label {
+    bottom: 0;
+    color: $black_26;
+    font-size: 16px;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 24px;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: left;
+
+    &:after {
+        background-color: $color_cerulean_blue_approx;
+        bottom: 20px;
+        content: '';
+        height: 2px;
+        left: 45%;
+        position: absolute;
+        transition-duration: 0.2s;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        visibility: hidden;
+        width: 10px;
+    }
+}
+
+.mdl-select--floating-label {
+    .mdl-textfield__label {
+        transition-duration: 0.2s;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    &.is-focused {
+        .mdl-select__label {
+            @extend %extend_1;
+        }
+
+        .mdl-select__expandable-holder .mdl-select__label {
+            top: -16px;
+        }
+    }
+
+    &.is-dirty {
+        .mdl-select__label {
+            @extend %extend_1;
+        }
+
+        .mdl-select__expandable-holder .mdl-select__label {
+            top: -16px;
+        }
+    }
+
+    &.is-invalid .mdl-select__label {
+        color: $color_alizarin_crimson_approx;
+        font-size: 12px;
+    }
+}
+
+.mdl-select__error {
+    color: $color_alizarin_crimson_approx;
+    position: absolute;
+    font-size: 12px;
+    margin-top: 3px;
+    visibility: hidden;
+}
+
+.mdl-select__expandable-holder {
+    position: relative;
+    margin-left: 32px;
+    transition-duration: 0.2s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+    max-width: 0.1px;
+
+    .mdl-select__label:after {
+        bottom: 0;
+    }
+}
+
+
+$main-color: #3F51B5;
+
+.ui-datepicker {
+    padding: 0;
+    border: none;
+    box-shadow: 0 12px 36px 16px rgba(0, 0, 0, 0.24);
+    width: 300px !important;
+}
+
+.ui-corner-all {
+    border-radius: 0 !important;
+}
+
+.ui-widget-header {
+    border: 0 !important;
+}
+
+
+.ui-datepicker-prev.ui-state-hover,
+.ui-datepicker-next.ui-state-hover {
+    border: none;
+    outline: none;
+    background: lighten($main-color, 50%);
+}
+
+.ui-datepicker-calendar {
+    .ui-state-default {
+        background: none;
+        border: none;
+        text-align: center;
+        height: 33px;
+        width: 33px;
+        line-height: 36px;
+    }
+
+    .ui-state-highlight {
+        color: $main-color;
+    }
+
+    .ui-state-active {
+        border-radius: 50%;
+        background-color: $main-color;
+        color: white;
+    }
+
+    thead th {
+        color: #999999;
+        font-weight: 200;
+    }
+}
+
+/*.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background: none !important;
+}*/
+
+.ui-state-hover, .ui.widget-content .ui-state-hover {
+    color: $main-color !important;
+}
+
+.ui-datepicker .ui-datepicker-title {
+    line-height: 3.0em;
+}
+
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+    top: 12px;
+
+    &:hover{
+        top: 12px;
+    }
+}

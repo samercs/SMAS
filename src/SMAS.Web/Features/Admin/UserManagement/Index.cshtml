@@ -1,0 +1,211 @@
+@using SMAS.Entities
+@using SMAS.Web.Core.Extensions
+@model SMAS.Web.Features.Admin.UserManagement.Models.IndexViewModel
+
+@{
+    PageSettings.Title = "Users";
+}
+
+<form class="form-inline form-search" asp-controller="UserManagement" asp-action="Index" method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            @Html.TextBoxFor(m => m.Search, new { @class = "form-control", placeholder = "Search name or email..." })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.DropDownList("Role", Model.RoleList, "All Roles", new { @class = "form-control" })
+    </div>
+</form>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="myModel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 id="modelTitle" class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <form-group>
+                    <label>User name</label>
+                    <p class="form-control-static" id="userNameP">
+                    </p>
+                </form-group>
+                <form-group>
+                    <label>Current Subscription</label>
+                    <p class="form-control-static" id="currentSubscription">
+                    </p>
+                </form-group>
+                <form-group>
+                    <label>Edit Subscription</label>
+                    <div class="row">
+                        <div class="col-md-4">
+                            @Html.EditorFor(i => i.DateTime, "DateTime")
+                        </div>
+                        <div class="col-md-8 form-inline">
+                            <button type="button" id="btnAddDays" class="btn btn-link"><i class="fa fa-chevron-left fa-pad-right"></i>Add</button>
+                            <div class="input-group">
+                                <input type="number" id="days" name="days" class="form-control form-control-sm" value="30" />
+                                <div class="input-group-addon">days</div>
+                            </div>
+                        </div>
+                    </div>
+                </form-group>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSaveSubscription" class="btn btn-default">Save</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <input type="hidden" id="userId" />
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+@(Html.Kendo().Grid<User>()
+    .Init(ajax => ajax.Action("GetUsers", "UserManagement", new { Model.Search, Model.Role }))
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.FirstName);
+        columns.Bound(p => p.LastName);
+        columns.Bound(p => p.Email).HtmlAttributes(new { @class = "hidden-sm" }).HeaderHtmlAttributes(new { @class = "hidden-sm" });
+        columns.Bound(p => p.SubScription).ClientTemplate("#=renderSubscription(SubScription)#").Title("Subscription");
+        columns.Bound(p => p.Expiration).ClientTemplate("#=renderExpiration(Expiration)#").Title("Expiration").HtmlAttributes(new { @class = "hidden-sm" }).HeaderHtmlAttributes(new { @class = "hidden-sm" });
+        columns.Template("#=renderAddSubscription(Id, kendo.toString(SubscriptionExpiration,'yyyy-MM-dd'), FirstName, LastName)#").Locked(true).HtmlAttributes(new { @class = "link-cell " }).Title("");
+        columns.LinkColumn("Edit", "/admin/users/#=Id#/edit");
+
+    })
+    .Deferred()
+)
+
+@section scripts {
+    @Html.Kendo().DeferredScripts()
+    <script>
+        var renderSubscription = function (subscription) {
+            if (subscription == 'No Subscription') {
+                return '<div class="label label-default">No Subscription</div>';
+            } else if (subscription == 'Active Subscription') {
+                return '<div class="label label-success">Active Subscription</div>';
+            } else if (subscription == 'Expired Subscription') {
+                return '<div class="label label-danger">Expired Subscription</div>';
+            }
+        };
+
+        var renderExpiration = function (expiration) {
+            if (isNaN(expiration)) {
+                return '';
+            } else {
+                if (expiration > 1) {
+                    return expiration + ' days';
+                } else if (expiration == 1) {
+                    return expiration + ' day';
+                } else {
+                    return '';
+                }
+            }
+
+        };
+
+        var renderAddSubscription = function (id, expiration, firstName, lastName) {
+            var userName = firstName + " " + lastName;
+            if (expiration !== '') {
+                return '<a class="add-subscription" href="#" data-user-name="' + userName + '" data-expire="' + expiration + '" data-id="' + id + '">Add Subscription</a>';
+            } else {
+                return '<a class="add-subscription" href="#" data-user-name="' + userName + '"  data-id="' + id + '">Add Subscription</a>';
+            }
+
+        }
+
+        var formatDate = function (date) {
+            return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+        }
+
+        $(function () {
+
+            var currentSubscription = $("#currentSubscription");
+            var datePiker = $("#DateTime");
+            var days = $("#days");
+            var userId = $("#userId");
+            var modelTitle = $("#modelTitle");
+            var userNameP = $("#userNameP");
+
+            var addDays = function (date, days) {
+                var result = new Date(date);
+                result.setDate(result.getDate() + days);
+                return result;
+            };
+
+            $("body").on("click",
+                "a.add-subscription",
+                function () {
+                    var $this = $(this);
+                    var id = $this.data("id");
+                    var name = $this.data("user-name");
+                    userId.val(id);
+                    modelTitle.html("Update user (" + name + ") subscription");
+                    userNameP.html(name);
+                    currentSubscription.html('');
+                    var dayExpire = $this.data("expire");
+                    if (dayExpire) {
+                        var expireDate = new Date(dayExpire);
+                        var formatedStr = formatDate(expireDate);
+                        var today = new Date();
+                        if (expireDate >= today) {
+                            currentSubscription.html('<span class="text-success">ACTIVE</span> ' + formatedStr);
+                        } else {
+                            currentSubscription.html('<span class="text-danger">EXPIRE</span> ' + formatedStr);
+                        }
+                        datePiker.val(formatedStr);
+                        datePiker.datepicker();
+                    } else {
+                        datePiker.val(new Date().toLocaleDateString());
+                        datePiker.datepicker();
+                    }
+
+                    var id = $(this).data("id");
+                    $('#myModel').modal();
+                });
+
+            $("#btnAddDays").click(function () {
+
+                if (isNaN(days.val())) {
+                    return;
+                }
+                if (days.val() == '') {
+                    return;
+                }
+                var oldDate = new Date(datePiker.val());
+                var newDate = addDays(oldDate, parseInt(days.val()));
+                var newDateFormateStr = formatDate(newDate);
+                datePiker.val(newDateFormateStr);
+                datePiker.datepicker();
+            });
+
+            $("#btnSaveSubscription").click(function () {
+                var newDate = new Date(datePiker.val());
+                var dateStr = formatDate(newDate);
+                var data = { userId: userId.val(), newSubDateTime: dateStr };
+                $.ajax({
+                    url: "/api/user/update-subscription",
+                    cache: false,
+                    method: "PUT",
+                    data: JSON.stringify(data),
+                    headers: { "X-ApiKey": "UY0l7NgHenpPInEGxOKH" },
+                    contents: "application/json",
+                    dataType: "json",
+                    contentType: "application/json"
+                })
+                    .done(function () {
+                        $('div[data-role="grid"]').data('kendoGrid').dataSource.read();
+                        $('#myModel').modal('hide');
+                    })
+                    .fail(function () {
+                        alert("error");
+                    });
+            });
+        });
+    </script>
+}

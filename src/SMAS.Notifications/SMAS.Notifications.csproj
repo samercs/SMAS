@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <AssemblyName>SMAS.Notifications</AssemblyName>
+    <PackageId>SMAS.Notifications</PackageId>
+    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SMAS.Data\SMAS.Data.csproj" />
+    <ProjectReference Include="..\SMAS.Entities\SMAS.Entities.csproj" />
+    <ProjectReference Include="..\SMAS.Services\SMAS.Services.csproj" />
+    <ProjectReference Include="..\OrangeJetpack.Services.Client\OrangeJetpack.Services.Client.csproj" />
+  </ItemGroup>
+
+</Project>

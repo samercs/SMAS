@@ -1,0 +1,32 @@
+// Configure bundling and minification for the project.
+// More info at https://go.microsoft.com/fwlink/?LinkId=808241
+[
+  {
+    "outputFileName": "wwwroot/css/site.min.css",
+    "inputFiles": [
+      "styles/site.scss"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/image-uploader.css",
+    "inputFiles": [
+      "styles/image-uploader.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "minifyEmbeddedCssCode": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/dropzone.js",
+    "inputFiles": [
+      "scripts/dropzone.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/image-uploader.js",
+    "inputFiles": [
+      "scripts/image-uploader.js"
+    ]
+  }
+]

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <AssemblyName>SMAS.Services</AssemblyName>
+    <PackageId>SMAS.Services</PackageId>
+    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SMAS.Core\SMAS.Core.csproj" />
+    <ProjectReference Include="..\SMAS.Data\SMAS.Data.csproj" />
+    <ProjectReference Include="..\SMAS.Entities\SMAS.Entities.csproj" />
+    <ProjectReference Include="..\OrangeJetpack.Services.Client\OrangeJetpack.Services.Client.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="1.1.1" />
+  </ItemGroup>
+
+</Project>

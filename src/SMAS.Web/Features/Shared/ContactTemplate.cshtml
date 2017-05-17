@@ -1,0 +1,19 @@
+@model SMAS.Entities.Contact
+
+<form-group>
+    <label asp-for="Name"></label>
+    <input asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name"></span>
+</form-group>
+<form-group>
+    <label asp-for="Title"></label>
+    <input asp-for="Title" class="form-control" />
+</form-group>
+<form-group>
+    <label asp-for="Phone"></label>
+    <input asp-for="Phone" class="form-control" type="number" />
+</form-group>
+<form-group>
+    <label asp-for="Email"></label>
+    <input asp-for="Email" class="form-control" type="email" />
+</form-group>

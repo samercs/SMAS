@@ -1,0 +1,21 @@
+[
+  {
+    "outputFile": "wwwroot/css/site.css",
+    "inputFile": "styles/site.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "Styles/_forms.css",
+    "inputFile": "Styles/_forms.scss"
+  },
+  {
+    "outputFile": "Styles/_kendo.css",
+    "inputFile": "Styles/_kendo.scss"
+  },
+  {
+    "outputFile": "Styles/image-uploader.css",
+    "inputFile": "Styles/image-uploader.scss"
+  }
+]

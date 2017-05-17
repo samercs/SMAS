@@ -1,0 +1,296 @@
+﻿@import "_variables.scss";
+
+body {
+    padding-top: 100px;
+    background: #f5f5f5;
+}
+
+header.navbar-inverse {
+    background-color: $primary;
+    border: none;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+
+    .navbar-brand {
+        padding: 8px 15px 8px 15px;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    .navbar-brand,
+    .navbar-link.btn-link,
+    .navbar-nav > li > a {
+        color: $white;
+    }
+
+    .navbar-toggle {
+        border-color: $white;
+    }
+
+    .gravatar {
+        float: left;
+        margin-right: 5px;
+        border-radius: 100%;
+    }
+}
+
+.navbar-inverse .btn-link {
+
+    &, &:hover {
+        padding: 3px 20px;
+        letter-spacing: 0;
+        color: #333 !important;
+        width: 100%;
+        text-align: left;
+    }
+
+    &:hover {
+        text-decoration: none;
+        background-color: #f5f5f5;
+        opacity: 1 !important;
+    }
+}
+
+
+.left_col {
+
+    .nav_title {
+        background-color: #263238;
+    }
+
+    background-color: #37474f;
+}
+
+.menu_section {
+    margin: 15px 0 !important;
+}
+
+.mdl-card.mdl-card--expand {
+    width: auto;
+
+    .mdl-card__supporting-text {
+        width: auto;
+    }
+
+    .mdl-textfield {
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+.demo-navigation .mdl-navigation__link .material-icons {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.56);
+    margin-right: 16px;
+}
+
+.demo-content {
+    max-width: 1080px;
+}
+
+.material-icons.md-18 {
+    font-size: 18px;
+}
+
+.material-icons.md-24 {
+    font-size: 24px;
+}
+
+.material-icons.md-36 {
+    font-size: 36px;
+}
+
+.material-icons.md-48 {
+    font-size: 48px;
+}
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.material-icons.md-dark.md-inactive {
+    color: rgba(0, 0, 0, 0.26);
+}
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light {
+    color: rgba(255, 255, 255, 1);
+}
+
+.material-icons.md-light.md-inactive {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.alert {
+    display: block;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid transparent;
+    border-left-width: 10px;
+    border-radius: 0;
+
+    .alert-link {
+        font-weight: normal;
+    }
+}
+
+.alert-success {
+    border-color: $success;
+    color: $success;
+    background: rgba($success, .05);
+
+    .alert-link {
+        color: $success;
+    }
+}
+
+.alert-danger {
+    border-color: $danger;
+    color: $danger;
+    background: rgba($danger, .05);
+
+    .alert-link {
+        color: $danger;
+    }
+}
+
+.alert-warning {
+    border-color: $warning;
+    color: $warning;
+    background: rgba($warning, .05);
+
+    .alert-link {
+        color: $warning;
+    }
+}
+
+.alert-info {
+    border-color: $info;
+    color: $info;
+    background: rgba($info, .05);
+
+    .alert-link {
+        color: $info;
+    }
+}
+
+.link-list {
+    margin: 0 0 1em 0;
+    padding: 0;
+    list-style: none;
+    text-align: right;
+
+    li {
+        display: inline;
+        margin-right: 8px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    form {
+        display: inline-block;
+    }
+}
+
+.bs-callout {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+}
+
+.bs-callout h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.bs-callout p:last-child {
+    margin-bottom: 0;
+}
+
+.bs-callout code {
+    border-radius: 3px;
+}
+
+.bs-callout + .bs-callout {
+    margin-top: -5px;
+}
+
+.bs-callout-success {
+    border-left-color: $success;
+}
+
+.bs-callout-success h4 {
+    color: $success;
+}
+
+.bs-callout-danger {
+    border-left-color: $danger;
+}
+
+.bs-callout-danger h4 {
+    color: $danger;
+}
+
+.bs-callout-warning {
+    border-left-color: $warning;
+}
+
+.bs-callout-warning h4 {
+    color: $warning;
+}
+
+.bs-callout-info {
+    border-left-color: $info;
+}
+
+.bs-callout-info h4 {
+    color: $info;
+}
+
+.sub-title {
+    margin-top: 30px;
+    border-bottom: solid 1px $gray;
+    padding-bottom: 8px;
+}
+
+.image-cell {
+    width: 60px;
+
+    img {
+        background-color: #ccc;
+        padding: 5px;
+        width: 44px;
+        height: 44px;
+    }
+}
+
+.bootstrap-select {
+    .dropdown-toggle, .dropdown-toggle:hover, .dropdown-toggle:focus {
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc !important;
+        border-radius: 0px;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        padding: 6px 12px !important;
+    }
+}
+
+.form-control-sm {
+    max-width: 75px !important;
+}
+
+.date-picker {
+    z-index: 1000000 !important;
+}

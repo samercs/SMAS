@@ -1,0 +1,118 @@
+﻿@import "_variables";
+
+textarea {
+    resize: vertical;
+}
+
+.form-search {
+    margin-bottom: 24px;
+}
+
+.form-control {
+    border-radius: 0;
+
+    &:focus {
+        border-color: $primary;
+        box-shadow: none !important;
+    }
+}
+
+.input-group-addon {
+    border-radius: 0;
+}
+
+.btn, .btn:hover, .btn:focus {
+    padding: 10px 24px;
+    outline: none !important;
+    border: none !important;
+    box-shadow: none;
+    text-shadow: none;
+    opacity: 1;
+    -moz-transition: opacity .25s ease-in-out;
+    -o-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+    transition: opacity .25s ease-in-out;
+    font-weight: normal;
+    letter-spacing: 2px;
+
+
+    &:lang(ar) {
+        letter-spacing: normal;
+    }
+
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+.btn-default, .btn-default:hover, .btn-default:focus {
+    background: $primary;
+    color: white;
+}
+
+.field-validation-error {
+    color: $danger;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error,
+textarea.input-validation-error {
+    &, &:focus {
+        border-color: $danger;
+    }
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: $danger;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.required-label {
+    display: inline-block;
+    margin: -4px 0 0 8px;
+    color: $danger;
+    font-size: 1rem;
+    vertical-align: text-top;
+}
+
+.mdl-button--link {
+    padding: 0;
+    border-color: transparent;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.mdl-data-table {
+    width: 100%;
+}
+
+.link-list {
+    margin: 0 0 1em 0;
+    padding: 0;
+    list-style: none;
+    text-align: right;
+
+    li {
+        display: inline;
+        margin-right: 8px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.mdl-cell-label {
+    text-align: center;
+    padding-top: 35px;
+}

@@ -1,0 +1,14 @@
+@model SMAS.Web.Features.Shared.ConfirmationViewModel
+
+@{
+    PageSettings.Title = Model.PageTitle;
+}
+
+<form method="post">
+    @Html.AntiForgeryToken()
+    <status-message Message="@Model.ConfirmationMessage" Type="Warning"></status-message>
+    <section>
+        <button type="submit" class="btn btn-default">Yes</button>
+        <a href="javascript:history.back();" class="btn btn-default">No</a>
+    </section>
+</form>
