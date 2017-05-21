@@ -18,6 +18,26 @@
     }
   },
   {
+    "outputFileName": "wwwroot/css/layout.css",
+    "inputFiles": [
+      "styles/layout.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "minifyEmbeddedCssCode": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/animate.css",
+    "inputFiles": [
+      "styles/animate.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "minifyEmbeddedCssCode": true
+    }
+  },
+  {
     "outputFileName": "wwwroot/js/dropzone.js",
     "inputFiles": [
       "scripts/dropzone.js"
@@ -28,5 +48,67 @@
     "inputFiles": [
       "scripts/image-uploader.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/js/jquery-migrate.js",
+    "inputFiles": [
+      "scripts/jquery-migrate.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/jquery.easing.js",
+    "inputFiles": [
+      "scripts/jquery.easing.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/jquery.smooth-scroll.js",
+    "inputFiles": [
+      "scripts/jquery.smooth-scroll.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/jquery.wow.js",
+    "inputFiles": [
+      "scripts/jquery.wow.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/swiper.jquery.js",
+    "inputFiles": [
+      "scripts/swiper.jquery.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/jmasonry.js",
+    "inputFiles": [
+      "scripts/jquery.masonry.pkgd.js",
+      "scripts/imagesloaded.pkgd.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/layout.js",
+    "inputFiles": [
+      "scripts/layout.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/wow.js",
+    "inputFiles": [
+      "scripts/wow.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/swiper.js",
+    "inputFiles": [
+      "scripts/swiper.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/masonry.js",
+    "inputFiles": [
+      "scripts/masonry.js"
+    ]
   }
 ]
+

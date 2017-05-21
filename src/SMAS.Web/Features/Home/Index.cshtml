@@ -1,361 +1,159 @@
-@using SMAS.Core.Identity
-@inject IOptions<AppSettings> AppSettings
-
+ï»¿@using SMAS.Web.Core.Configuration
+@model dynamic
 @{
-    PageSettings.Title = "Index";
-    Layout = null;
+    PageSettings.Title = "Home";
 }
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>@AppSettings.Value.SiteTitle</title>
-
-        <!-- Font -->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-
-        <!-- Styles -->
-        <environment names="Development">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-            <link href="~/lib/swiper/dist/css/swiper.css" rel="stylesheet" />
-        </environment>
-        <environment names="Staging,Production">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
-        </environment>
-
-        <!-- This should be moved to a scss file -->
-        <style>
-            body {
-                background: #fff;
-                font-family: 'Montserrat',"Helvetica Neue",Helvetica,Arial,sans-serif;
-                overflow: hidden;
-                overflow-y: auto;
-            }
-
-            a {
-                transition: color 0.3s ease;
-            }
-
-            header {
-                background: #0072bb url('https://wh.azureedge.net/assets/bg-636275844691059371.jpg') no-repeat 50% 50%;
-                background-size: cover;
-                padding: 3rem;
-                text-align: center;
-                width: 100%;
-            }
-
-            .logo {
-                max-width: 200px;
-                margin: 3rem auto;
-            }
-
-            h3 {
-                color: white;
-                line-height: 1.5;
-                font-weight: 400;
-                font-size: 21px;
-            }
-
-                h3 > br {
-                    display: none;
-                }
-
-            .button-group {
-                margin: 5rem auto;
-                text-align: center;
-                width: 100%;
-            }
-
-                .button-group .button {
-                    margin: 1rem;
-                    opacity: 1;
-                    max-width: 250px;
-                    width: 100%;
-                    display: inline-block;
-                    transition: transform 0.4s ease, opacity 0.3s ease;
-                }
-
-                    .button-group .button:hover {
-                        transform: perspective(1px) scale(1.05);
-                    }
-
-                    .button-group .button:active {
-                        opacity: 0.8;
-                    }
-
-                    .button-group .button > img {
-                        width: 100%;
-                    }
-
-            .phone-background {
-                position: absolute;
-                top: -50px;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                margin: auto;
-                width: 260px;
-                max-width: 260px;
-                z-index: -1;
-            }
-
-            .phone-slider {
-                position: relative;
-                height: 600px;
-            }
-
-            #screenContainer {
-                height: 100%;
-            }
-
-                #screenContainer .swiper-slide {
-                    text-align: center;
-                    top: 80px;
-                }
-
-            #iconContainer .swiper-slide {
-                display: flex;
-                height: 300px;
-                flex-direction: column;
-                text-align: center;
-                align-items: center;
-                justify-content: center;
-            }
-
-            #iconContainer .swiper-pagination {
-                bottom: 5%;
-            }
-
-            .swiper-icon {
-                background: #0072bb;
-                border-radius: 50%;
-                height: 130px;
-                width: 130px;
-                padding: 2rem;
-                margin: 1.5rem auto;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-                .swiper-icon > img {
-                    display: block;
-                    width: 85px;
-                }
-
-            .swiper-slide p {
-                font-size: 2rem;
-                max-width: 90%;
-            }
-
-            footer {
-                background: #f3f4f7;
-                color: #0072bb;
-                padding: 3rem 0;
-            }
-
-                footer ul {
-                    list-style: none;
-                    margin: 0;
-                    padding: 0;
-                }
-
-                    footer p,
-                    footer ul,
-                    footer ul li {
-                        display: inline-block;
-                    }
-
-                        footer p,
-                        footer span,
-                        footer ul li {
-                            margin-right: 2rem;
-                        }
-
-            @@media screen and (min-width: 768px) {
-                h3 {
-                    font-size: 24px;
-                }
-
-                .button-group .button {
-                    margin: 0 1rem;
-                }
-
-                .phone-slider,
-                #iconContainer .swiper-slide {
-                    height: 600px;
-                }
-
-                #iconContainer .swiper-pagination {
-                    bottom: 25%;
-                }
-            }
-
-            @@media screen and (min-width: 992px) {
-                h3 > br {
-                    display: block;
-                }
-
-                .swiper-slide p {
-                    max-width: 50%;
-                }
-            }
-        </style>
-
-    </head>
-    <body>
-
-        <header>
-            <div class="container">
-                <!-- Logo -->
-                <img src="https://wh.azureedge.net/assets/logo-636274307824599876.svg" class="logo" alt="Watch Horse TV" />
-
-                <!-- Main title -->
-                <h3>
-                    The first application in the Middle East that allows you to catch the latest
-                    <br>
-                    show jumping rounds of all the riders competing.
-                </h3>
-
-                <!-- App links -->
-                <div class="button-group">
-                    <a href="https://itunes.apple.com/us/app/watch-horse-tv/id1208963324" target="_blank" class="button" title="Download on the App Store">
-                        <img src="https://wh.azureedge.net/assets/app-store-icon-636274306648054608.svg" class="button-logo" alt="Download on the App Store" />
-                    </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.SMAS.www" target="_blank" class="button" title="Get it on Google Play">
-                        <img src="https://wh.azureedge.net/assets/play-store-icon-636274306650721031.svg" class="button-logo" alt="Get it on Google Play" />
-                    </a>
-                </div>
-            </div>
-        </header>
-
-        <main>
-            <div class="row">
-
-                <!-- Icon slider -->
-                <div class="col-xs-12 col-sm-6">
-                    <div class="swiper-container" id="iconContainer">
-                                        
-                        <div class="swiper-wrapper">
-
-                            <!-- First icon slide -->
-                            <div class="swiper-slide">
-                                <div class="swiper-icon">
-                                    <img src="https://wh.azureedge.net/assets/slide-1-icon-636274307834094747.svg" alt="Slide Icon 1" />
-                                </div>
-                                <p>Search by rider, by horse or by competition.</p>
-                            </div>
-
-                            <!-- Second icon slide -->
-                            <div class="swiper-slide">
-                                <div class="swiper-icon">
-                                    <img src="https://wh.azureedge.net/assets/slide-2-icon-636274307843358364.svg" alt="Slide Icon 2" />
-                                </div>
-                                <p>View competition's invitation, start list, and results.</p>
-                            </div>
-
-                            <!-- Third icon slide -->
-                            <div class="swiper-slide">
-                                <div class="swiper-icon">
-                                    <img src="https://wh.azureedge.net/assets/slide-3-icon-636274307852447442.svg" alt="Slide Icon 3" />
-                                </div>
-                                <p>Favorite videos from the search.</p>
-                            </div>
+<div class="bg-color-sky-light" data-auto-height="true">
+    <div class="content-lg container">
+        <div class="row row-space-1 margin-b-2">
+            <div class="col-sm-4 sm-margin-b-2">
+                <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".3s">
+                    <div class="service" data-height="height">
+                        <div class="service-element">
+                            <i class="service-icon fa fa-facebook"></i>
                         </div>
-
-                        <!-- Pagination -->
-                        <div class="swiper-pagination"></div>
+                        <div class="service-info">
+                            <h3>Socal Media</h3>
+                            <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
+                        </div>
+                        <a href="#" class="content-wrapper-link"></a>
                     </div>
                 </div>
-
-                <!-- Screen slider -->
-                <div class="col-xs-12 col-sm-6 phone-slider">
-                    <div class="swiper-container" id="screenContainer">
-                        <div class="swiper-wrapper">
-
-                            <!-- First screen slide -->
-                            <div class="swiper-slide">
-                                <div class="swiper-screen">
-                                    <img src="https://wh.azureedge.net/assets/slide-1-screen-636274307837448962.png" alt="Slide Icon 1" />
-                                </div>
-                                <div class="phone-background">
-                                    <img src="https://wh.azureedge.net/assets/phone-636274307830671072.svg" alt="Phone" />
-                                </div>
-                            </div>
-
-                            <!-- Second screen slide -->
-                            <div class="swiper-slide">
-                                <div class="swiper-screen">
-                                    <img src="https://wh.azureedge.net/assets/slide-2-screen-636274307846947123.png" alt="Slide Icon 2" />
-                                </div>
-                                <div class="phone-background">
-                                    <img src="https://wh.azureedge.net/assets/phone-636274307830671072.svg" alt="Phone" />
-                                </div>
-                            </div>
-
-                            <!-- Third screen slide -->
-                            <div class="swiper-slide">
-                                <div class="swiper-screen">
-                                    <img src="https://wh.azureedge.net/assets/slide-3-screen-636274307855615106.png" alt="Slide Icon 3" />
-                                </div>
-                                <div class="phone-background">
-                                    <img src="https://wh.azureedge.net/assets/phone-636274307830671072.svg" alt="Phone" />
-                                </div>
-                            </div>
+            </div>
+            <div class="col-sm-4 sm-margin-b-2">
+                <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".2s">
+                    <div class="service" data-height="height">
+                        <div class="service-element">
+                            <i class="service-icon fa  fa-newspaper-o"></i>
                         </div>
+                        <div class="service-info">
+                            <h3>Advertising</h3>
+                            <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
+                        </div>
+                        <a href="#" class="content-wrapper-link"></a>
                     </div>
                 </div>
-
             </div>
-        </main>
-
-        <footer>
-            <div class="container">
-                <p>© SMAS</p>
-                <span>|</span>
-                <ul>
-                    <li>
-                        <a asp-controller="Home" asp-action="PrivacyPolicy" title="Privacy">Privacy</a>
-                    </li>
-                    <li>
-                        <a asp-controller="Account" asp-action="Login" title="My Account">My Account</a>
-                    </li>
-                </ul>
+            <div class="col-sm-4">
+                <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".1s">
+                    <div class="service" data-height="height">
+                        <div class="service-element">
+                            <i class="service-icon fa fa-mobile"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Mobile Application</h3>
+                            <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
+                        </div>
+                        <a href="#" class="content-wrapper-link"></a>
+                    </div>
+                </div>
             </div>
-        </footer>
+        </div>
+        <!--// end row -->
 
-        <!-- Scripts -->
-        <environment names="Development">
-            <script src="~/lib/swiper/dist/js/swiper.js"></script>
-        </environment>
-        <environment names="Staging,Production">
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
-        </environment>
+        <div class="row row-space-1">
+            <div class="col-sm-4 sm-margin-b-2">
+                <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".4s">
+                    <div class="service" data-height="height">
+                        <div class="service-element">
+                            <i class="service-icon fa fa-html5"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Websites</h3>
+                            <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
+                        </div>
+                        <a href="#" class="content-wrapper-link"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 sm-margin-b-2">
+                <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".5s">
+                    <div class="service" data-height="height">
+                        <div class="service-element">
+                            <i class="service-icon fa fa-vcard-o"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Design</h3>
+                            <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
+                        </div>
+                        <a href="#" class="content-wrapper-link"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".6s">
+                    <div class="service" data-height="height">
+                        <div class="service-element">
+                            <i class="service-icon fa fa-cloud"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Hosting</h3>
+                            <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
+                        </div>
+                        <a href="#" class="content-wrapper-link"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--// end row -->
+    </div>
+</div>
 
-        <!-- This should be moved to a js file -->
-        <script>
-            var screenContainer,
-                iconContainer;
-
-            iconContainer = new Swiper('#iconContainer', {
-                direction: 'horizontal',
-                pagination: '.swiper-pagination',
-                paginationClickable: true
-            })
-            screenContainer = new Swiper('#screenContainer', {
-                direction: 'horizontal'
-            })
-
-            iconContainer.on('slideChangeStart', function () {
-                screenContainer.slideTo(iconContainer.activeIndex);
-            });
-            screenContainer.on('slideChangeStart', function () {
-                iconContainer.slideTo(screenContainer.activeIndex);
-            });
-        </script>
-
-    </body>
-</html>
-
+<div class="bg-color-sky-light">
+    <div class="content-lg container">
+        <div class="row row-space-1">
+            <div class="col-sm-4 sm-margin-b-2">
+                <!-- Pricing -->
+                <div class="pricing">
+                    <div class="margin-b-30">
+                        <i class="pricing-icon icon-chemistry"></i>
+                        <h3>Starter Kit <span> - $</span> 49</h3>
+                        <p>Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
+                    </div>
+                    <ul class="list-unstyled pricing-list margin-b-50">
+                        <li class="pricing-list-item">Basic Features</li>
+                        <li class="pricing-list-item">Up to 5 products</li>
+                        <li class="pricing-list-item">50 Users Panels</li>
+                    </ul>
+                    <a href="pricing.html" class="btn-theme btn-theme-sm btn-default-bg text-uppercase">Choose</a>
+                </div>
+                <!-- End Pricing -->
+            </div>
+            <div class="col-sm-4 sm-margin-b-2">
+                <!-- Pricing -->
+                <div class="pricing pricing-active">
+                    <div class="margin-b-30">
+                        <i class="pricing-icon icon-badge"></i>
+                        <h3>Professional <span> - $</span> 149</h3>
+                        <p>Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
+                    </div>
+                    <ul class="list-unstyled pricing-list margin-b-50">
+                        <li class="pricing-list-item">Basic Features</li>
+                        <li class="pricing-list-item">Up to 100 products</li>
+                        <li class="pricing-list-item">100 Users Panels</li>
+                    </ul>
+                    <a href="pricing.html" class="btn-theme btn-theme-sm btn-default-bg text-uppercase">Choose</a>
+                </div>
+                <!-- End Pricing -->
+            </div>
+            <div class="col-sm-4">
+                <!-- Pricing -->
+                <div class="pricing">
+                    <div class="margin-b-30">
+                        <i class="pricing-icon icon-shield"></i>
+                        <h3>Advanced <span> - $</span> 249</h3>
+                        <p>Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
+                    </div>
+                    <ul class="list-unstyled pricing-list margin-b-50">
+                        <li class="pricing-list-item">Extended Features</li>
+                        <li class="pricing-list-item">Unlimited products</li>
+                        <li class="pricing-list-item">Unlimited Users Panels</li>
+                    </ul>
+                    <a href="pricing.html" class="btn-theme btn-theme-sm btn-default-bg text-uppercase">Choose</a>
+                </div>
+                <!-- End Pricing -->
+            </div>
+        </div>
+        <!--// end row -->
+    </div>
+</div>
